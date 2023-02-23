@@ -15,6 +15,10 @@ func main() {
 	router.HandleFunc("/", func(resp http.ResponseWriter, req *http.Request) {
 		fmt.Fprintln(resp, "Up and running...")
 	})
+
+	router.HandleFunc("/posts", getPosts).Methods("GET")
+	router.HandleFunc("/post", addPost).Methods("POST")
+
 	log.Printf("Server is running on port %s", port)
 
 	http.ListenAndServe(port, router)
